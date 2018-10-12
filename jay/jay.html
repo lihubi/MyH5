@@ -10,7 +10,7 @@
 
         }
       body{
-          background: url("../images/jbg.jpg") no-repeat;
+          background: url("images/jbg.jpg") no-repeat;
           background-size: cover;
           overflow: hidden;
       }
@@ -83,28 +83,33 @@
             left: 20%;
             top: 70%;
             animation: lhb 6s linear infinite normal ;
+            opacity: 0;
 
         }
         @keyframes lhb {
             25%{
                 left: 40%;
                 top:0%;
-                opacity: 0;
+                opacity: 1;
+                transform: rotateY(360deg);
             }
             50%{
                 left: 100%;
                 top:50%;
-                opacity: 1;
+                opacity: 0;
+                transform: rotateY(0deg);
             }
             75%{
                 left: 80%;
                 top:100%;
-                opacity: 0;
+                opacity: 1;
+                transform: rotateY(360deg);
             }
             100%{
                 left: 20%;
                 top: 80%;
-                opacity: 1;
+                opacity: 0;
+                transform: rotateY(0deg);
             }
 
         }
@@ -120,7 +125,7 @@
     <li><img src="images/j5.jpg" alt=""></li>
     <li><img src="images/j6.jpg" alt=""></li>
 </ul>
-<img src="../images/lhb.png" class="lhb">
+<img src="images/music.png" class="lhb">
     <audio  autoplay="autoplay">
         <source src="../images/烟花易冷%20-%20周杰伦.mp3" type="audio/ogg" />
 
