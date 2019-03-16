@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滚动框</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+       .father{
+           height: 300px;
+           width: 1429px;
+           border: 1px solid #000;
+           background-color: black;
+           margin: 150px auto;
+           overflow: hidden;
+
+       }
+        .father>ul{
+            height: 300px;
+            width: 4300px;
+            list-style: none;
+        }
+        .father>ul>li{
+            float: left;
+        }
+        .father>ul>li>a>img{
+            height: 300px;
+        }
+        .father>ul>li>a{
+            width: 100%;
+            height: 100%;
+        }
+
+        video{
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+            /*加滤镜*/
+            /*-webkit-filter: grayscale(100%);*/
+            /*filter:grayscale(100%);*/
+            z-index:-11
+        }
+        source{
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+        }
+
+
+
+    </style>
+    <script src="jQuery/jquery.2.1.4.min.js"></script>
+    <script>
+        $(function () {
+            var add =0;
+            var f0;
+            function autoPlay() {
+                 f0= setInterval(function () {
+                    add-=5;
+                    if(add<=-2835){
+                        add = 0;
+                    }
+                    $(".father>ul").css("marginLeft",add);
+                },20)
+            }
+
+
+            autoPlay();
+            $(".father>ul>li").hover(function () {
+                clearInterval(f0);
+                $(this).siblings().fadeTo(100,0.5);
+            },function () {
+                autoPlay();
+                $(this).siblings().fadeTo(100,1);
+            })
+
+        })
+    </script>
+</head>
+<body>
+<div>
+    <video autoplay loop="loop">
+        <source src="//sv1.doubanio.com/201903162239/58ed0c29aa1aed2cda90af70adf5f03b/2017/mp4ieannual2018.mp4" type="video/mp4">
+    </video>
+
+</div>
+<div class="father">
+    <ul>
+        <li><a href="https://movie.douban.com/subject/26752088/"><img src="https://img1.doubanio.com/view/photo/m/public/p2526120899.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1292213/"><img src="https://img3.doubanio.com/view/photo/l/public/p2002649421.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1297574/?tag=%E5%8D%8E%E8%AF%AD&from=gaia_video"><img src="https://img1.doubanio.com/view/photo/m/public/p2173479599.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1862151/"><img src="https://img3.doubanio.com/view/photo/m/public/p2525495261.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1292365/"><img src="https://img1.doubanio.com/view/photo/l/public/p2206146838.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1301168/"><img src="https://img3.doubanio.com/view/photo/l/public/p2516365566.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/26752088/"><img src="https://img1.doubanio.com/view/photo/m/public/p2526120899.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1292213/"><img src="https://img3.doubanio.com/view/photo/l/public/p2002649421.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1297574/?tag=%E5%8D%8E%E8%AF%AD&from=gaia_video"><img src="https://img1.doubanio.com/view/photo/m/public/p2173479599.webp" alt=""></a></li>
+        <li><a href="https://movie.douban.com/subject/1862151/"><img src="https://img3.doubanio.com/view/photo/m/public/p2525495261.webp" alt=""></a></li>
+
+    </ul>
+</div>
+</body>
+</html>
