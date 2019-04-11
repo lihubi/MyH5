@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度一下，你就知道</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            width: 100%;
+            height: 50px;
+        }
+        .top-right{
+
+            width: 480px;
+            height: 24px;
+            position: relative;
+            float: right;
+            margin: 10px;
+        }
+        .top-ul{
+            list-style: none;
+            width: 400px;
+            height: 30px;
+        }
+        .top-ul>li{
+            float: left;
+            margin: 10px;
+            font-size: 13px;
+
+        }
+        .top-ul>li>a{
+            color: black;
+            font-weight: 700;
+        }
+        .top-ul>li:nth-child(n+7)>a{
+            font-weight: normal;
+
+        }
+        .top-ul>li>a:hover{
+            color: #00c;
+        }
+        .top-right>div{
+            color: white;
+            background-color: #3385ff;
+            font-size: 13px;
+            display: inline-block;
+            position: absolute;
+            right: 5px;
+            top: 7px;
+            width: 63px;
+            height: 23px;
+            line-height: 23px;
+            text-align: center;
+        }
+        .center{
+            text-align: center;
+            margin-top: 50px;
+        }
+        .center>img{
+            width: 270px;
+            height: 129px;
+            margin-bottom: 10px;
+        }
+        .center .text{
+            width: 539px;
+            height: 34px;
+
+        }
+        .center .button{
+            width: 100px;
+            height: 38px;
+            border: none;
+            background-color: #3385ff;
+            color: white;
+            font-size: 15px;
+            position: absolute;
+            left: 1039px;
+        }
+        .jsonp{
+            margin: 0 auto;
+            width: 540px;
+            height: 240px;
+            overflow: hidden;
+            list-style: none;
+
+        }
+        .jsonp>li{
+            width: 540px;
+            height: 40px;
+
+            text-align: left;
+            line-height: 40px;
+
+        }
+        .jsonp>li:hover{
+            background-color: #ddd;
+        }
+        .logo2{
+            height: 80px;
+        }
+        .ma{
+            height: 130px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            font-weight: 700;
+
+        }
+        .last{
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+        }
+        .ass2{
+            height: 25px;
+        }
+        .last a{
+            color:#999 ;
+        }
+        .bottom{
+            width: 1000px;
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            margin-left: -500px;
+        }
+
+        .hidden1{
+            width: 70px;
+            height: 100px;
+            border: 1px solid #d1d1d1;
+            position: relative;
+            left: 1373px;
+
+            text-align: center;
+            display: none;
+            margin-top: 45px;
+        }
+
+        .hidden1>ul{
+            list-style: none;
+        }
+        .hidden1>ul>li>a{
+            width: 70px;
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+            line-height: 26px;
+        }
+        .hidden1>ul>li:hover{
+            background-color: #3385ff;
+        }
+        .hidden1>ul>li:hover a{
+            color: white;
+        }
+        .hidden2{
+            width: 100px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+           display: none;
+            text-align: center;
+            background-color: white;
+        }
+        .hidden2>span{
+            display: inline-block;
+            width: 66px;
+            height: 43px;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+        .hidden2>ul{
+            list-style: none;
+        }
+        .hidden2>ul>li>a{
+            display: inline-block;
+            text-decoration: none;
+            font-size: 12px;
+            width: 100px;
+            height: 40px;
+        }
+        .imgs{
+            display: block;
+            width: 36px;
+            height: 36px;
+            background-color: saddlebrown;
+            margin: 10px auto 5px;
+
+        }
+        .imgs1{
+            background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/logos/nuomi_7f5cd35.png") no-repeat;
+            background-size: cover;
+        }
+        .imgs2{
+            background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/logos/qqjt_9809ca8.png") no-repeat;
+            background-size: cover;
+        }
+        .imgs3{
+            background:url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/logos/image_55b5909.png) no-repeat;
+            background-size: cover;
+        }
+        .imgs4{
+            background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/logos/zhidao_cbf2aff.png") no-repeat;
+            background-size: cover;
+        }
+        .imgs5{
+            background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/logos/wenku_aaf198d.png") no-repeat;
+            background-size: cover;
+        }
+        .imgs6{
+            background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/logos/fengyunbang_1986a40.png") no-repeat;
+            background-size: cover;
+        }
+        .hidden2-a{
+            display: inline-block;
+            margin-top: 50px;
+            color: #666;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="top-right">
+        <ul class="top-ul">
+            <li><a href="#">新闻</a></li>
+            <li><a href="#">hao123</a></li>
+            <li><a href="#">地图</a></li>
+            <li><a href="#">视频</a></li>
+            <li><a href="#">贴吧</a></li>
+            <li><a href="#">学术</a></li>
+            <li><a href="#">登录</a></li>
+            <li><a href="#" id="hidden">设置</a></li>
+        </ul>
+        <div id="hidden2">更多产品</div>
+    </div>
+    <div class="hidden1">
+        <ul>
+            <li><a href="#">搜索设置</a></li>
+            <li><a href="#">高级搜索</a></li>
+            <li><a href="#">关闭预测</a></li>
+            <li><a href="#">隐私设置</a></li>
+        </ul>
+    </div>
+    <div class="hidden2">
+        <span>更多产品</span>
+        <ul>
+            <li><a href="#"><span class="imgs imgs1"></span>郭梁</a></li>
+            <li><a href="#"><span class="imgs imgs2"></span>郭梁</a></li>
+            <li><a href="#"><span class="imgs imgs3"></span>郭梁</a></li>
+            <li><a href="#"><span class="imgs imgs4"></span>郭梁</a></li>
+            <li><a href="#"><span class="imgs imgs5"></span>郭梁</a></li>
+            <li><a href="#"><span class="imgs imgs6"></span>郭梁</a></li>
+        </ul>
+        <a href="#" class="hidden2-a">
+            全部产品>>
+        </a>
+    </div>
+</div>
+<div class="center">
+    <img src="../images/bd_logo1.png" alt="">
+    <div class="input">
+        <input type="text" class="text" id="wd">
+        <input type="button" value="百度一下" class="button">
+    </div>
+    <ul class="jsonp">
+
+    </ul>
+</div>
+<div class="bottom">
+    <div class="ma">
+        <img src="../images/u=1246712202,1535556080&fm=26&gp=0.jpg" class="logo2">
+        <div>百度</div>
+    </div>
+
+
+    <div class="last">
+
+        <div class="ass2">
+            <a href="#">把百度设为主页</a>
+            <a href="#">关于百度</a>
+            <a href="#">About  Baidu</a>
+            <a href="#">百度推广</a>
+        </div>
+
+
+        ©2018 Baidu
+        <a href="#">使用百度前必读</a>
+        <a href="#">意见反馈</a>
+        京ICP证030173号
+        <a href="#">京公网安备11000002000001号</a>
+    </div>
+</div>
+
+<script>
+    var wd = document.querySelector('#wd');
+    var ul = document.querySelector('.jsonp');
+    var button = document.querySelector('.button');
+    var a = document.querySelector('#hidden');
+    var a2 = document.querySelector('#hidden2');
+    var hidden1 = document.querySelector('.hidden1');
+    var hidden2 = document.querySelector('.hidden2');
+    //jsonp获取数据
+    wd.onkeyup = function () {
+        var script = document.createElement("script");
+        script.src = "http://suggestion.baidu.com/su?wd="+wd.value+"&cb=baidu";
+        document.body.appendChild(script);
+    }
+    //点击跳转
+    button.onclick = function () {
+        window.location.href='https://www.baidu.com/s?wd='+wd.value;
+        return false;
+
+    }
+    //显示隐藏1
+    a.onmouseenter = function () {
+        hidden1.style.display="inline-block";
+    }
+    hidden1.onmouseleave = function () {
+        hidden1.style.display="none";
+    }
+    //显示隐藏2
+    a2.onmouseenter = function () {
+        hidden2.style.display="inline-block";
+    }
+    hidden2.onmouseleave = function () {
+        hidden2.style.display="none";
+    }
+    //创建li
+    function baidu(json) {
+        console.log(json.s);
+        ul.innerHTML = " ";
+        for (var i=0;i<json.s.length;i++){
+            var li = document.createElement("li");
+            li.innerHTML = json.s[i];
+            // ul.children[i].innerHTML = json.s[i];
+            ul.appendChild(li);
+
+        }
+
+        ul.children[0].onclick = function () {
+            wd.value = this.innerHTML;
+            ul.innerHTML = " ";
+        }
+        ul.children[1].onclick = function () {
+            wd.value = this.innerHTML;
+            ul.innerHTML = " ";
+        }
+        ul.children[2].onclick = function () {
+            wd.value = this.innerHTML;
+            ul.innerHTML = " ";
+        }
+        ul.children[3].onclick = function () {
+            wd.value = this.innerHTML;
+            ul.innerHTML = " ";
+        }
+        ul.children[4].onclick = function () {
+            wd.value = this.innerHTML;
+            ul.innerHTML = " ";
+        }
+        ul.children[5].onclick = function () {
+            wd.value = this.innerHTML;
+            ul.innerHTML = " ";
+        }
+
+
+
+
+    }
+
+</script>
+</body>
+</html>
