@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" http-equiv="Access-Control-Allow-Origin" content="*">
     <title>百度一下，你就知道</title>
     <style>
         *{
@@ -307,7 +307,7 @@
     //jsonp获取数据
     wd.onkeyup = function () {
         var script = document.createElement("script");
-        script.src = "//suggestion.baidu.com/su?wd="+wd.value+"&cb=baidu";
+        script.src = "http：//suggestion.baidu.com/su?wd="+wd.value+"&cb=baidu";
         document.body.appendChild(script);
     }
     //点击跳转
