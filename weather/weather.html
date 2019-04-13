@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>weather</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: url("https://img1.doubanio.com/view/photo/raw/public/p1784572777.jpg") no-repeat;
+            background-size: cover;
+        }
+        h1{
+            text-align: center;
+            margin-top: 50px;
+        }
+        .search{
+            width: 500px;
+            height: 50px;
+            margin: 0px auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        .search>input{
+            width: 350px;
+            height: 30px;
+        }
+        .search>button{
+            background-color: #e3751e ;
+            padding: 8px;
+            border: none;
+        }
+        .search>button:hover{
+            background-color: #e38d13;
+        }
+        .hidden{
+            width: 430px;
+
+            background-color: #ccc;
+            opacity: 0.7;
+            margin: 0 auto;
+            display: none;
+        }
+        .hidden>p{
+            margin-left: 10px;
+            font-size: 15px;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+<h1>天气查询</h1>
+<div class="search">
+    <input type="text" placeholder="请输入您想要查询的城市">
+    <button>点击搜索</button>
+</div>
+<div class="hidden">
+
+</div>
+<script>
+   var text = document.querySelector("input");
+   var btn = document.querySelector("button");
+   var div = document.querySelector(".hidden");
+
+   
+    //ajax
+    btn.onclick = function () {
+        div.innerHTML="";
+
+       var xhr = new XMLHttpRequest;
+       xhr.open("get","https://www.apiopen.top/weatherApi?city="+text.value);
+       xhr.onload = function () {
+           console.log(xhr.responseText);
+           var result = JSON.parse(xhr.responseText);
+           console.log(result);
+    
+           if (result.msg=="成功!"){
+               //显示div
+               div.style.display = "block";
+               //城市
+               var city = document.createElement("p");
+               city.innerHTML = result.data.city;
+               div.appendChild(city);
+               //当前温度
+               var city = document.createElement("p");
+               city.innerHTML = result.data.wendu;
+               div.appendChild(city);
+               //日期
+               var city = document.createElement("p");
+               city.innerHTML = result.data.forecast[0].date;
+               div.appendChild(city);
+               //风向
+               var city = document.createElement("p");
+               city.innerHTML = result.data.forecast[0].fengxiang;
+               div.appendChild(city);
+               //高温
+               var city = document.createElement("p");
+               city.innerHTML = result.data.forecast[0].high;
+               div.appendChild(city);
+               //低温
+               var city = document.createElement("p");
+               city.innerHTML = result.data.forecast[0].low;
+               div.appendChild(city);
+               //天气
+               var city = document.createElement("p");
+               city.innerHTML = result.data.forecast[0].type;
+               div.appendChild(city);
+               //提示
+               var city = document.createElement("p");
+               city.innerHTML = result.data.ganmao;
+               div.appendChild(city);
+           }
+           else {
+               alert("您输入的城市不存在,请重新输入!");
+               text.value = "";
+           }
+
+
+       }
+       xhr.send()
+    }
+
+</script>
+</body>
+</html>
+
