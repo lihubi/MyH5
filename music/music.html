@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>music</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: url("https://img1.doubanio.com/view/photo/raw/public/p1784572777.jpg") no-repeat;
+            background-size: cover;
+        }
+        h1{
+            text-align: center;
+            margin-top: 50px;
+            color: green;
+        }
+        .search{
+            width: 500px;
+            height: 50px;
+            margin: 0px auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        .search>input{
+            width: 350px;
+            height: 30px;
+        }
+        .search>button{
+            background-color: #e3751e ;
+            padding: 8px;
+            border: none;
+        }
+        .search>button:hover{
+            background-color: #e38d13;
+        }
+        .hidden{
+            width: 450px;
+            display: none;
+            margin: 0 auto;
+
+        }
+        .hidden .hidden-ul{
+            font-size: 15px;
+            list-style: none;
+        }
+        .hidden>ul>li{
+            height: 50px;
+            position: relative;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            background: rgba(200,200,200,0.5);
+            border-bottom: 2px solid #555;
+
+
+        }
+        .img1{
+            margin-left: 10px;
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+        .img2{
+            height: 20px;
+            margin-right: 15px;
+            float: right;
+            margin-top: 15px;
+            opacity: 0.6;
+        }
+        .img2:hover{
+            opacity: 1;
+        }
+        .hidden>ul>li>span{
+            display: inline-block;
+            overflow: hidden;
+            width: 300px;
+        }
+        .hidden>p{
+            margin-left: 10px;
+            font-size: 15px;
+            line-height: 2;
+        }
+        h1>a{
+            font-size: 40px;
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1><a href="hongbing.png">红兵</a>的音乐</h1>
+<div class="search">
+    <input type="text" placeholder="输入兵兵想听的歌">
+    <button>点击搜索</button>
+</div>
+<div class="hidden">
+<ul class="hidden-ul">
+    <audio src=""></audio>
+</ul>
+</div>
+<script>
+    var text = document.querySelector("input");
+    var btn = document.querySelector("button");
+    var div = document.querySelector(".hidden");
+    var ul = document.querySelector(".hidden-ul");
+    var audio = document.querySelector("audio");
+
+
+    //ajax   \u
+    btn.onclick = function () {
+            ul.innerHTML = "";
+        var xhr = new XMLHttpRequest;
+        xhr.open("get","https://api.apiopen.top/searchMusic?name="+text.value);
+        xhr.onload = function () {
+            div.style.display="block";
+            //获取接口数据
+            var result = JSON.parse(xhr.responseText);
+            console.log(result);
+
+
+            for (var i=0;i<6;i++){
+                var li = document.createElement("li");
+                li.innerHTML =
+                    "        <img src=\""+result.result[i].pic+"\" alt=\"\" class=\"img1\">\n" +
+                    "        <span>\n" +
+                    "            歌曲："+result.result[i].title+"\n" +
+                    "            <br>\n" +
+                    "            作者："+result.result[i].author+"\n" +
+                    "        </span>\n" +
+                    "        <img src=\"play.png\" alt=\"\" class=\"img2\">\n"
+
+
+                ul.appendChild(li);
+            }
+            //点击播放图标
+
+            ul.children[0].children[2].onclick = function () {
+
+                if (audio.paused) {
+                    var src3 = audio.src;
+                    var src4 = result.result[0].url;
+                    if (src3 == src4) {
+                        audio.play();
+                        //播放
+                    }
+                    else {
+                        audio.src = result.result[0].url;
+                        audio.play();
+
+                    }
+                }
+                    else {
+                        var src1 = audio.src;
+                        var src2 = result.result[0].url;
+                        if (src1==src2){
+                            audio.pause();
+                            console.log("暂停播放");
+                        }
+                        else{
+                            audio.src = result.result[0].url;
+                            audio.play();
+                        }
+
+                    }
+
+            }
+            ul.children[1].children[2].onclick = function () {
+
+
+                if (audio.paused){
+                    var src3 = audio.src;
+                    var src4 = result.result[1].url;
+                    if (src3==src4) {
+                        audio.play();
+                    }
+                    else{
+                        audio.src = result.result[1].url;
+                        console.log(audio.paused);
+                        audio.play();
+                        console.log("开始播放");
+                        console.log(audio.paused);
+                    }
+
+
+                }
+                else {
+                    var src1 = audio.src;
+                    var src2 = result.result[1].url;
+                    if (src1==src2){
+                        audio.pause();
+                        console.log("暂停播放");
+                    }
+                    else{
+                        audio.src = result.result[1].url;
+                        audio.play();
+                    }
+                }
+
+            }
+            ul.children[2].children[2].onclick = function () {
+
+
+                if (audio.paused){
+                    var src3 = audio.src;
+                    var src4 = result.result[2].url;
+                    if (src3==src4) {
+                        audio.play();
+                    }
+                    else{
+                        audio.src = result.result[2].url;
+                        console.log(audio.paused);
+                        audio.play();
+                        console.log("开始播放");
+                        console.log(audio.paused);
+                    }
+
+
+                }
+                else {
+                    var src1 = audio.src;
+                    var src2 = result.result[2].url;
+                    if (src1==src2){
+                        audio.pause();
+                        console.log("暂停播放");
+                    }
+                    else{
+                        audio.src = result.result[2].url;
+                        audio.play();
+                    }
+                }
+
+            }
+            ul.children[3].children[2].onclick = function () {
+                if (audio.paused){
+                    var src3 = audio.src;
+                    var src4 = result.result[3].url;
+                    if (src3==src4) {
+                        audio.play();
+                    }
+                    else{
+                        audio.src = result.result[3].url;
+                        console.log(audio.paused);
+                        audio.play();
+                        console.log("开始播放");
+                        console.log(audio.paused);
+                    }
+
+
+                }
+                else {
+                    var src1 = audio.src;
+                    var src2 = result.result[3].url;
+                    if (src1==src2){
+                        audio.pause();
+                        console.log("暂停播放");
+                    }
+                    else{
+                        audio.src = result.result[3].url;
+                        audio.play();
+                    }
+                }
+
+            }
+            ul.children[4].children[2].onclick = function () {
+
+
+                if (audio.paused){
+                    var src3 = audio.src;
+                    var src4 = result.result[4].url;
+                    if (src3==src4) {
+                        audio.play();
+                    }
+                    else{
+                        audio.src = result.result[4].url;
+                        console.log(audio.paused);
+                        audio.play();
+                        console.log("开始播放");
+                        console.log(audio.paused);
+                    }
+
+
+                }
+                else {
+                    var src1 = audio.src;
+                    var src2 = result.result[4].url;
+                    if (src1==src2){
+                        audio.pause();
+                        console.log("暂停播放");
+                    }
+                    else{
+                        audio.src = result.result[4].url;
+                        audio.play();
+                    }
+                }
+
+            }
+            ul.children[5].children[2].onclick = function () {
+
+
+                if (audio.paused){
+                    var src3 = audio.src;
+                    var src4 = result.result[5].url;
+                    if (src3==src4) {
+                        audio.play();
+                    }
+                    else{
+                        audio.src = result.result[5].url;
+                        console.log(audio.paused);
+                        audio.play();
+                        console.log("开始播放");
+                        console.log(audio.paused);
+                    }
+
+
+                }
+                else {
+                    var src1 = audio.src;
+                    var src2 = result.result[5].url;
+                    if (src1==src2){
+                        audio.pause();
+                        console.log("暂停播放");
+                    }
+                    else{
+                        audio.src = result.result[5].url;
+                        audio.play();
+                    }
+                }
+
+            }
+        }
+        xhr.send();
+    }
+
+
+</script>
+</body>
+</html>
+
