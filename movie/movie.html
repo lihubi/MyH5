@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>豆瓣电影top250</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+            line-height: 50px;
+        }
+        .imgs{
+            width: 280px;
+            margin-top: 10px;
+            margin-left: 5px;
+        }
+        img{
+            width: 280px;
+        }
+        .name{
+            margin: 10px;
+            line-height: 1.5;
+        }
+
+    </style>
+    <script src="../jQuery/jquery.2.1.4.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+</head>
+<body>
+<h1>豆瓣 TOP 250</h1>
+<div class="item">
+
+</div>
+
+<script>
+   var start = 0;
+
+    $(function () {
+        add(start);
+        $(window).scroll(function(){
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
+            if( scrollHeight-(scrollTop + windowHeight) <1){
+                //执行add方法
+                if(start<=225){
+                    start+=25;
+                    add(start);
+
+                }
+            }
+        });
+        function add(start){
+            //ajax
+            $.ajax({
+                url:"http://api.douban.com/v2/movie/top250?start="+start+"&count=25",
+                dataType:'jsonp',
+                success:function (data) {
+                    console.log(data);
+
+                    for (var i=0;i<data.subjects.length;i++){
+                        var $div = $(" <div class=\"imgs\">\n" +
+                            "        <img src=\""+data.subjects[i].images.small+"\" alt=\"\">\n" +
+                            "        <div class=\"name\">\n" +
+                            "            "+data.subjects[i].title+"<br>"+data.subjects[i].year+"<br>\n" +
+                            "            <hr>\n" +
+                            "            评分："+data.subjects[i].rating.average+"<br>\n" +
+                            "            导演："+data.subjects[i].directors[0].name+"<br>\n" +
+                            "            主演："+data.subjects[i].casts[0].name+data.subjects[i].casts[1].name+"<br>\n" +
+                            "            类型："+data.subjects[i].genres[0]+data.subjects[i].genres[1]+"<br>\n" +
+                            "            <hr>\n" +
+                            "        </div>\n" +
+                            "    </div>")
+                        $div.appendTo(".item");
+                        $(".item").masonry( 'reloadItems' );//初始化
+                        $(".item").masonry( 'layout' );//重新布局
+                        $(".item").masonry({
+
+                        })
+                    }
+                }
+            })
+
+
+        }
+//瀑布流
+
+    })
+</script>
+</body>
+</html>
