@@ -13,8 +13,8 @@
             line-height: 50px;
         }
         .imgs{
-            width: 280px;
-            margin-top: 10px;
+            width: 290px;
+            height: 600px;
             margin-left: 5px;
         }
         img{
@@ -23,10 +23,11 @@
         .name{
             margin: 10px;
             line-height: 1.5;
+
         }
 
     </style>
-    <script src="../jQuery/jquery.2.1.4.min.js"></script>
+  <script src="../jQuery/jquery.2.1.4.min.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 </head>
 <body>
@@ -60,27 +61,31 @@
                 dataType:'jsonp',
                 success:function (data) {
                     console.log(data);
+                    setTimeout(function () {
+                        for (var i=0;i<data.subjects.length;i++){
 
-                    for (var i=0;i<data.subjects.length;i++){
-                        var $div = $(" <div class=\"imgs\">\n" +
-                            "        <img src=\""+data.subjects[i].images.small+"\" alt=\"\">\n" +
-                            "        <div class=\"name\">\n" +
-                            "            "+data.subjects[i].title+"<br>"+data.subjects[i].year+"<br>\n" +
-                            "            <hr>\n" +
-                            "            评分："+data.subjects[i].rating.average+"<br>\n" +
-                            "            导演："+data.subjects[i].directors[0].name+"<br>\n" +
-                            "            主演："+data.subjects[i].casts[0].name+data.subjects[i].casts[1].name+"<br>\n" +
-                            "            类型："+data.subjects[i].genres[0]+data.subjects[i].genres[1]+"<br>\n" +
-                            "            <hr>\n" +
-                            "        </div>\n" +
-                            "    </div>")
-                        $div.appendTo(".item");
-                        $(".item").masonry( 'reloadItems' );//初始化
-                        $(".item").masonry( 'layout' );//重新布局
-                        $(".item").masonry({
 
-                        })
-                    }
+                            var $div = $(" <div class=\"imgs\">\n" +
+                                "        <img src=\""+data.subjects[i].images.small+"\" alt=\"\">\n" +
+                                "        <div class=\"name\">\n" +
+                                "            "+data.subjects[i].title+"<br>"+data.subjects[i].year+"<br>\n" +
+                                "            <hr>\n" +
+                                "            评分："+data.subjects[i].rating.average+"<br>\n" +
+                                "            类型："+data.subjects[i].genres[0]+"<br>\n" +
+                                "            导演："+data.subjects[i].directors[0].name+"<br>\n" +
+                                "            主演："+data.subjects[i].casts[0].name+" "+data.subjects[i].casts[1].name+"<br>\n" +
+
+                                "            <hr>\n" +
+                                "        </div>\n" +
+                                "    </div>")
+                            $div.appendTo(".item");
+                            $(".item").masonry( 'reloadItems' );//初始化
+                            $(".item").masonry( 'layout' );//重新布局
+                            $(".item").masonry({
+                            })
+                        }
+                    },2000);
+
                 }
             })
 
