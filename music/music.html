@@ -9,13 +9,14 @@
             padding: 0;
         }
         body{
-            background: url("bg.jpg") no-repeat;
+            background: url("https://lihubi.github.io/MyH5/music/bg.jpg") no-repeat;
             background-size: cover;
         }
         h1{
             text-align: center;
             margin-top: 50px;
-            color: green;
+            font-size: 40px;
+            color: red;
         }
         .search{
             width: 500px;
@@ -82,23 +83,18 @@
             font-size: 15px;
             line-height: 2;
         }
-        h1>a{
-            font-size: 40px;
-            color: red;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
-<h1><a href="hongbing.png">红兵</a>的音乐</h1>
+<h1>music</h1>
 <div class="search">
-    <input type="text" placeholder="输入兵兵想听的歌">
+    <input type="text" placeholder="请输入您想听的歌">
     <button>点击搜索</button>
 </div>
 <div class="hidden">
-<ul class="hidden-ul">
-    <audio src=""></audio>
-</ul>
+    <ul class="hidden-ul">
+        <audio src=""></audio>
+    </ul>
 </div>
 <script>
     var text = document.querySelector("input");
@@ -110,228 +106,67 @@
 
     //ajax   \u
     btn.onclick = function () {
-            ul.innerHTML = "";
+        ul.innerHTML = "";
         var xhr = new XMLHttpRequest;
-        xhr.open("get","https://api.apiopen.top/searchMusic?name="+text.value);
+        xhr.open("get", "https://api.apiopen.top/searchMusic?name=" + text.value);
         xhr.onload = function () {
-            div.style.display="block";
+            div.style.display = "block";
             //获取接口数据
             var result = JSON.parse(xhr.responseText);
             console.log(result);
 
 
-            for (var i=0;i<6;i++){
+            for (var i = 0; i < 6; i++) {
                 var li = document.createElement("li");
                 li.innerHTML =
-                    "        <img src=\""+result.result[i].pic+"\" alt=\"\" class=\"img1\">\n" +
+                    "        <img src=\"" + result.result[i].pic + "\" alt=\"\" class=\"img1\">\n" +
                     "        <span>\n" +
-                    "            歌曲："+result.result[i].title+"\n" +
+                    "            歌曲：" + result.result[i].title + "\n" +
                     "            <br>\n" +
-                    "            作者："+result.result[i].author+"\n" +
+                    "            作者：" + result.result[i].author + "\n" +
                     "        </span>\n" +
-                    "        <img src=\"play.png\" alt=\"\" class=\"img2\">\n"
+                    "        <img src=\"https://lihubi.github.io/MyH5/music/play.png\" url=\""+result.result[i].url+"\" class=\"img2\">\n"
 
 
                 ul.appendChild(li);
             }
             //点击播放图标
+            for ( var j = 0; j <= 5; j++) {
+                ul.children[j].children[2].onclick = function () {
+                    if (audio.paused) {
+                        var src3 = audio.src;
+                        var src4 = this.getAttribute("url");
+                        if (src3 == src4) {
+                            audio.play();
+                            //播放
+                        }
+                        else {
+                            audio.src = this.getAttribute("url");
+                            audio.play();
 
-            ul.children[0].children[2].onclick = function () {
-
-                if (audio.paused) {
-                    var src3 = audio.src;
-                    var src4 = result.result[0].url;
-                    if (src3 == src4) {
-                        audio.play();
-                        //播放
+                        }
                     }
-                    else {
-                        audio.src = result.result[0].url;
-                        audio.play();
-
-                    }
-                }
                     else {
                         var src1 = audio.src;
-                        var src2 = result.result[0].url;
-                        if (src1==src2){
+                        var src2 = this.getAttribute("url");
+                        if (src1 == src2) {
                             audio.pause();
                             console.log("暂停播放");
                         }
-                        else{
-                            audio.src = result.result[0].url;
+                        else {
+                            audio.src = this.getAttribute("url");
                             audio.play();
                         }
 
                     }
 
-            }
-            ul.children[1].children[2].onclick = function () {
-
-
-                if (audio.paused){
-                    var src3 = audio.src;
-                    var src4 = result.result[1].url;
-                    if (src3==src4) {
-                        audio.play();
-                    }
-                    else{
-                        audio.src = result.result[1].url;
-                        console.log(audio.paused);
-                        audio.play();
-                        console.log("开始播放");
-                        console.log(audio.paused);
-                    }
-
-
-                }
-                else {
-                    var src1 = audio.src;
-                    var src2 = result.result[1].url;
-                    if (src1==src2){
-                        audio.pause();
-                        console.log("暂停播放");
-                    }
-                    else{
-                        audio.src = result.result[1].url;
-                        audio.play();
-                    }
                 }
 
             }
-            ul.children[2].children[2].onclick = function () {
-
-
-                if (audio.paused){
-                    var src3 = audio.src;
-                    var src4 = result.result[2].url;
-                    if (src3==src4) {
-                        audio.play();
-                    }
-                    else{
-                        audio.src = result.result[2].url;
-                        console.log(audio.paused);
-                        audio.play();
-                        console.log("开始播放");
-                        console.log(audio.paused);
-                    }
-
-
-                }
-                else {
-                    var src1 = audio.src;
-                    var src2 = result.result[2].url;
-                    if (src1==src2){
-                        audio.pause();
-                        console.log("暂停播放");
-                    }
-                    else{
-                        audio.src = result.result[2].url;
-                        audio.play();
-                    }
-                }
-
-            }
-            ul.children[3].children[2].onclick = function () {
-                if (audio.paused){
-                    var src3 = audio.src;
-                    var src4 = result.result[3].url;
-                    if (src3==src4) {
-                        audio.play();
-                    }
-                    else{
-                        audio.src = result.result[3].url;
-                        console.log(audio.paused);
-                        audio.play();
-                        console.log("开始播放");
-                        console.log(audio.paused);
-                    }
-
-
-                }
-                else {
-                    var src1 = audio.src;
-                    var src2 = result.result[3].url;
-                    if (src1==src2){
-                        audio.pause();
-                        console.log("暂停播放");
-                    }
-                    else{
-                        audio.src = result.result[3].url;
-                        audio.play();
-                    }
-                }
-
-            }
-            ul.children[4].children[2].onclick = function () {
-
-
-                if (audio.paused){
-                    var src3 = audio.src;
-                    var src4 = result.result[4].url;
-                    if (src3==src4) {
-                        audio.play();
-                    }
-                    else{
-                        audio.src = result.result[4].url;
-                        console.log(audio.paused);
-                        audio.play();
-                        console.log("开始播放");
-                        console.log(audio.paused);
-                    }
-
-
-                }
-                else {
-                    var src1 = audio.src;
-                    var src2 = result.result[4].url;
-                    if (src1==src2){
-                        audio.pause();
-                        console.log("暂停播放");
-                    }
-                    else{
-                        audio.src = result.result[4].url;
-                        audio.play();
-                    }
-                }
-
-            }
-            ul.children[5].children[2].onclick = function () {
-
-
-                if (audio.paused){
-                    var src3 = audio.src;
-                    var src4 = result.result[5].url;
-                    if (src3==src4) {
-                        audio.play();
-                    }
-                    else{
-                        audio.src = result.result[5].url;
-                        console.log(audio.paused);
-                        audio.play();
-                        console.log("开始播放");
-                        console.log(audio.paused);
-                    }
-
-
-                }
-                else {
-                    var src1 = audio.src;
-                    var src2 = result.result[5].url;
-                    if (src1==src2){
-                        audio.pause();
-                        console.log("暂停播放");
-                    }
-                    else{
-                        audio.src = result.result[5].url;
-                        audio.play();
-                    }
-                }
-
-            }
-        }
+        };
         xhr.send();
     }
+
 
 
 </script>
