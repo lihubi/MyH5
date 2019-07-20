@@ -1,0 +1,21 @@
+body{
+    background-size: 400%;
+    background-position-x: 32%;
+}
+.search{
+    width: 85%;
+}
+.search>input{
+    width: 80%;
+    float: left;
+}
+.search>button{
+    width: 15%;
+    height: 68%;
+}
+.hidden{
+    width: 90%;
+}
+.hidden>ul>li>span{
+    width: 60%;
+}
