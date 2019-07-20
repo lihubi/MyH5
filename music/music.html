@@ -2,94 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>music</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        body{
-            background: url("https://lihubi.github.io/MyH5/music/bg.jpg") no-repeat;
-            background-size: cover;
-        }
-        h1{
-            text-align: center;
-            margin-top: 50px;
-            font-size: 40px;
-            color: red;
-        }
-        .search{
-            width: 500px;
-            height: 50px;
-            margin: 0px auto;
-            margin-top: 100px;
-            text-align: center;
-        }
-        .search>input{
-            width: 350px;
-            height: 30px;
-        }
-        .search>button{
-            background-color: #e3751e ;
-            padding: 8px;
-            border: none;
-        }
-        .search>button:hover{
-            background-color: #e38d13;
-        }
-        .hidden{
-            width: 450px;
-            display: none;
-            margin: 0 auto;
-
-        }
-        .hidden .hidden-ul{
-            font-size: 15px;
-            list-style: none;
-        }
-        .hidden>ul>li{
-            height: 50px;
-            position: relative;
-            padding-bottom: 10px;
-            padding-top: 10px;
-            background: rgba(200,200,200,0.5);
-            border-bottom: 2px solid #555;
+    <link rel="stylesheet" href="computer.css">
+    <link rel="stylesheet" href="mobile.css"  media="(max-width:500px)">
 
 
-        }
-        .img1{
-            margin-left: 10px;
-            width: 50px;
-            height: 50px;
-            float: left;
-        }
-        .img2{
-            height: 20px;
-            margin-right: 15px;
-            float: right;
-            margin-top: 15px;
-            opacity: 0.6;
-        }
-        .img2:hover{
-            opacity: 1;
-        }
-        .hidden>ul>li>span{
-            display: inline-block;
-            overflow: hidden;
-            width: 300px;
-        }
-        .hidden>p{
-            margin-left: 10px;
-            font-size: 15px;
-            line-height: 2;
-        }
-    </style>
 </head>
 <body>
 <h1>music</h1>
 <div class="search">
     <input type="text" placeholder="请输入您想听的歌">
-    <button>点击搜索</button>
+    <button>搜索</button>
 </div>
 <div class="hidden">
     <ul class="hidden-ul">
@@ -97,6 +21,7 @@
     </ul>
 </div>
 <script>
+
     var text = document.querySelector("input");
     var btn = document.querySelector("button");
     var div = document.querySelector(".hidden");
@@ -166,9 +91,6 @@
         };
         xhr.send();
     }
-
-
-
 </script>
 </body>
 </html>
